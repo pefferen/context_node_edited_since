@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Expose the last edited field value as a context condition.
+ * Create condition options.
  */
 class context_node_edited_since_context_condition_date_since extends context_condition {
   function condition_values() {
@@ -11,19 +11,17 @@ class context_node_edited_since_context_condition_date_since extends context_con
     return $values;
   }
 
-  function execute_old($node) {
-    // Grab the value this node has stored for our field.
-    // dpr($node);
-    if ($items = field_get_items('node', $node, 'field_list', $node->language)) {
+/**
+ * Change the condition form widget to a select box.
+ */
+  function condition_form($context) {
+    // Get the condition form
+    $form = parent::condition_form($context);
 
-      // See if any of the field's values satisfy the condition.
-      foreach ($items as $item) {
-        foreach ($this->get_contexts($item['value']) as $context) {
-          $this->condition_met($context, $item['value']);
+    // Change form type to selectbox
+    $form['#type'] = 'select';
 
-        }
-      }
-    }
+    return $form;
   }
 
   function execute($node) {
