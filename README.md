@@ -15,7 +15,7 @@ This module is a plugin for the context module. It serves as a condition you can
 
 ## TODO:
 
-- Find appropriate name for plugin (Node edit date)
+- Find appropriate name for plugin (Node date (and ask for edit/view option))
 - refactor code
 - make documentation
 - also trigger on node view (let user use default 'node' condition to choose edit of view mode.)
