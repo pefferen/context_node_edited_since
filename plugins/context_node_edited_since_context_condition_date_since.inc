@@ -26,17 +26,12 @@ class context_node_edited_since_context_condition_date_since extends context_con
   } */
 
   function execute($node) {
-    global $user;
-
     // get the UID fo the current user
+    global $user;
     $user_id = $user->uid;
 
     // Get the content type of the currently edited node
     $content_type = $node->type;
-
-
-    // echo('nu de waarden(user"' . $user_id . '"): ');
-    // echo 'content type: ' . $content_type;
 
     // select the nodes edited by this user and get the edit date of the most
     // recent revision. So we know how long ago thuis user edited a node like
@@ -51,8 +46,6 @@ class context_node_edited_since_context_condition_date_since extends context_con
             array(':user' => $user_id,
             ':content_type' => $content_type,
             ))->fetchField();
-
-    // echo "bewerk datum: " . $last_edit_date;
 
     // We are going to compare the found date with the context setting
     if($this->get_contexts('month')) {
