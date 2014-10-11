@@ -70,7 +70,7 @@ function context_node_edited_since_node_view($node, $view_mode) {
  */
 function context_node_edited_since_form_alter($form, $form_state, $form_id) {
   // Fire our context plugin when editing nodes.
-  if($form['#node_edit_form'] == TRUE && isset($form['#node'])) {
+  if(isset($form['#node_edit_form']) && $form['#node_edit_form'] == TRUE && isset($form['#node'])) {
     // get node from $form variable
     $node = $form['#node'];
 
