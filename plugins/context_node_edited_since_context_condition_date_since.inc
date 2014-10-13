@@ -15,15 +15,34 @@ class context_node_edited_since_context_condition_date_since extends context_con
  * Change the condition form widget to a select box.
  * todo: Implement this featuer, a user should only be able to select one option
  */
-/*  function condition_form($context) {
+ function condition_form($context) {
     // Get the condition form
-    $form = parent::condition_form($context);
+    //$form = parent::condition_form($context);
 
     // Change form type to selectbox
-    $form['#type'] = 'select';
+    //$form['#type'] = 'select';
+    //$form['#type'] = 'radios';
 
-    return $form;
-  } */
+//    return $form;
+   return array(
+     '#title' => $this->title,
+     '#description' => $this->description,
+     '#options' => $this->condition_values(),
+     '#type' => 'select',
+     '#default_value' => $this->fetch_from_context($context, 'values'),
+   );
+  }
+
+  function condition_form_submit($values) {
+    // Make appropriate Array of confition form value.
+    // TODO: refactor, is the a PHP function to do this?
+    $original_value = $values;
+    $values = array(
+      $original_value => $original_value
+    );
+
+    return $values;
+  }
 
   function execute($node) {
     // get the UID fo the current user
